@@ -25,7 +25,7 @@ int main() {
     while (!acertou) {
         system("clear");
 
-        printf("LETRAS: \033[0;33m");
+        printf("LETRAS: ");
         erros = 0;
         escondidas = 0;
         for (i = 0; i < 26; i++) {
@@ -39,14 +39,14 @@ int main() {
                     }
                 }
 
-                printf("%c ", i + 'A');
+                printf("%s%c \033[0;0m", !encontrou ? "\033[0;91m" : "\033[0;33m",  i + 'A');
 
                 if (!encontrou) {
                     erros++;
                 };
             }
         }
-        printf("\033[0;0m\n");
+        printf("\n");
 
         printf("\033[0;90m/---\\\033[0;0m\n");
         printf("\033[0;90m|\033[0;31m   %c\033[0;0m\n", erros > 0 ? 'o' : ' ');
