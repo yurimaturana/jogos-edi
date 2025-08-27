@@ -9,27 +9,30 @@ int main() {
     fgets(palavra, 101, stdin);
     palavra[strlen(palavra) - 1] = '\0';
 
-    int tamanho = sizeof(palavra);
-    int acertou = 0, erros = 0, escondidas = 0;
-    int letras[26]={0};
+    int tamanho = strlen(palavra);
+    int finalizado = 0, erros = 0, faltamDescobrir = 0;
+    int letrasChutadas[26]={0};
     
     int i, j;
     
-    for (i = 0; i < tamanho && palavra[i]; i++) {
-        if (palavra[i] == '-' || (palavra[i] >= 'a' && palavra[i] <= 'z')) {}
-        else if (palavra[i] >= 'A' && palavra[i] <= 'Z') {
+    for (i = 0; i < tamanho; i++) {
+        if (palavra[i] >= 'A' && palavra[i] <= 'Z')
             palavra[i] = palavra[i] - 'A' + 'a';
-        } else palavra[i] = ' ';
+        else if ((palavra[i] >= 'a' && palavra[i] <= 'z') || palavra[i] == '-') {
+            // Mantém
+        }
+        else palavra[i] = ' ';
     }
     
-    while (!acertou) {
-        system("clear");
+    while (!finalizado) {
+        printf("\033[2J\033[H");
 
         printf("LETRAS: ");
         erros = 0;
-        escondidas = 0;
+        faltamDescobrir = 0;
+
         for (i = 0; i < 26; i++) {
-            if (letras[i]) {
+            if (letrasChutadas[i]) {
                 int encontrou = 0;
 
                 for (j = 0; j < tamanho && palavra[j]; j++) {
@@ -41,9 +44,7 @@ int main() {
 
                 printf("%s%c \033[0;0m", !encontrou ? "\033[0;91m" : "\033[0;33m",  i + 'A');
 
-                if (!encontrou) {
-                    erros++;
-                };
+                if (!encontrou) erros++;
             }
         }
         printf("\n");
@@ -53,40 +54,44 @@ int main() {
         printf("\033[0;90m|\033[0;31m  %c%c%c\033[0;0m\n", erros > 2 ? '/' : ' ', erros > 1 ? '|' : ' ', erros > 3 ? '\\' : ' ');
         printf("\033[0;90m|\033[0;31m  %c %c\033[0;0m\n", erros > 4 ? '/' : ' ', erros > 5 ? '\\' : ' ');
         printf("\033[0;90m|\033[0;0m\n");
-        // printf("ERROS: %d\n", erros);
 
         for (i = 0; i < tamanho && palavra[i]; i++) {
             if (palavra[i] == '-') printf("- ");
-            else if (letras[palavra[i] - 'a']) printf("\033[0;36m%c \033[0;0m", palavra[i] - 'a' + 'A');
+            else if (letrasChutadas[palavra[i] - 'a']) printf("\033[0;36m%c \033[0;0m", palavra[i] - 'a' + 'A');
             else {
-                escondidas++;
+                faltamDescobrir++;
                 printf("\033[0;90m_ \033[0;0m");
             }
         }
         
         printf("\n");
 
-        if (escondidas == 0) {
+        if (faltamDescobrir == 0) {
             printf("\033[0;32mVOCE GANHOU!\033[0;0m");
-            break;
+            finalizado = 1;
         }
 
         if (erros >= 6) {
             printf("\033[0;31mVOCE PERDEU!\033[0;0m");
-            break;
+            finalizado = 1;
         }
 
         char c = ' ';
         while (c == ' ') {
-            char temp, temp2;
-            scanf("%c", &temp);
+            char temp = getchar();
+            
+            if (temp == '\n' || temp == ' ') continue;
+
+            char temp2;
+
             if (temp >= 'a' && temp <= 'z')
                 temp2 = temp;
             else if (temp >= 'A' && temp <= 'Z')
                 temp2 = temp - 'A' + 'a';
+            else break;
 
-            if (letras[temp2 - 'a'] == 0) {
-                letras[temp2 - 'a'] = 1;
+            if (letrasChutadas[temp2 - 'a'] == 0) {
+                letrasChutadas[temp2 - 'a'] = 1;
                 c = temp2;
             }
         }
