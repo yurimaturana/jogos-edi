@@ -84,16 +84,17 @@ int main() {
 }
 
 void lerLetra() {
-    char temp = getchar(), temp2;
+    char temp = getchar();
 
-    if (temp >= 'a' && temp <= 'z')
-        temp2 = temp;
-    else if (temp >= 'A' && temp <= 'Z')
-        temp2 = temp - 'A' + 'a';
+    if (temp >= 'A' && temp <= 'Z')
+        temp = temp - 'A' + 'a';
+    else if (temp >= 'a' && temp <= 'z') {
+        // Mantém
+    }
     else return;
 
-    if (letrasChutadas[temp2 - 'a'] == 0)
-        letrasChutadas[temp2 - 'a'] = 1;
+    if (letrasChutadas[temp - 'a'] == 0)
+        letrasChutadas[temp - 'a'] = 1;
 }
 
 void mostrarGrafico(int erros) {
