@@ -55,7 +55,7 @@ int main() {
         mostrarGrafico(erros);
         
         for (i = 0; i < tamanho && palavra[i]; i++) {
-            if (palavra[i] == '-') printf("- ");
+            if (palavra[i] == '-' || palavra[i] == ' ') printf("%c ", palavra[i]);
             else if (letrasChutadas[palavra[i] - 'a']) printf("\033[0;36m%c \033[0;0m", palavra[i] - 'a' + 'A');
             else {
                 faltamDescobrir++;
