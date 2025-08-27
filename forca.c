@@ -25,7 +25,7 @@ int main() {
     while (!acertou) {
         system("clear");
 
-        printf("LETRAS: ");
+        printf("LETRAS: \033[0;33m");
         erros = 0;
         escondidas = 0;
         for (i = 0; i < 26; i++) {
@@ -46,33 +46,33 @@ int main() {
                 };
             }
         }
-        printf("\n");
+        printf("\033[0;0m\n");
 
-        printf("/---\\\n");
-        printf("|   %c\n", erros > 0 ? 'o' : ' ');
-        printf("|  %c%c%c\n", erros > 2 ? '/' : ' ', erros > 1 ? '|' : ' ', erros > 3 ? '\\' : ' ');
-        printf("|  %c %c\n", erros > 4 ? '/' : ' ', erros > 5 ? '\\' : ' ');
-        printf("|\n");
+        printf("\033[0;90m/---\\\033[0;0m\n");
+        printf("\033[0;90m|\033[0;31m   %c\033[0;0m\n", erros > 0 ? 'o' : ' ');
+        printf("\033[0;90m|\033[0;31m  %c%c%c\033[0;0m\n", erros > 2 ? '/' : ' ', erros > 1 ? '|' : ' ', erros > 3 ? '\\' : ' ');
+        printf("\033[0;90m|\033[0;31m  %c %c\033[0;0m\n", erros > 4 ? '/' : ' ', erros > 5 ? '\\' : ' ');
+        printf("\033[0;90m|\033[0;0m\n");
         // printf("ERROS: %d\n", erros);
 
         for (i = 0; i < tamanho && palavra[i]; i++) {
             if (palavra[i] == '-') printf("- ");
-            else if (letras[palavra[i] - 'a']) printf("%c ", palavra[i] - 'a' + 'A');
+            else if (letras[palavra[i] - 'a']) printf("\033[0;36m%c \033[0;0m", palavra[i] - 'a' + 'A');
             else {
                 escondidas++;
-                printf("_ ");
+                printf("\033[0;90m_ \033[0;0m");
             }
         }
         
         printf("\n");
 
         if (escondidas == 0) {
-            printf("VOCE GANHOU!");
+            printf("\033[0;32mVOCE GANHOU!\033[0;0m");
             break;
         }
 
         if (erros >= 6) {
-            printf("VOCE PERDEU!");
+            printf("\033[0;31mVOCE PERDEU!\033[0;0m");
             break;
         }
 
