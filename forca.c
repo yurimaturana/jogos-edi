@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-    char palavra[100] = "fodase";
+    char palavra[101];
+
+    printf("Insira a palavra: ");
+    fgets(palavra, 101, stdin);
+    palavra[strlen(palavra) - 1] = '\0';
+
     int tamanho = sizeof(palavra);
     int acertou = 0, erros = 0, escondidas = 0;
     int letras[26]={0};
@@ -11,7 +17,7 @@ int main() {
     
     while (!acertou) {
         system("clear");
-        
+
         printf("LETRAS: ");
         erros = 0;
         escondidas = 0;
@@ -26,16 +32,24 @@ int main() {
                     }
                 }
 
+                printf("%c ", i + 'A');
+
                 if (!encontrou) {
-                    printf("%c ", i + 'A');
                     erros++;
                 };
             }
         }
         printf("\n");
 
+        printf("/---\\\n");
+        printf("|   %c\n", erros > 0 ? 'o' : ' ');
+        printf("|  %c%c%c\n", erros > 2 ? '/' : ' ', erros > 1 ? '|' : ' ', erros > 3 ? '\\' : ' ');
+        printf("|  %c %c\n", erros > 4 ? '/' : ' ', erros > 5 ? '\\' : ' ');
+        printf("|\n");
+        // printf("ERROS: %d\n", erros);
+
         for (i = 0; i < tamanho && palavra[i]; i++) {
-            if (letras[palavra[i] - 'a']) printf("%c ", palavra[i]);
+            if (letras[palavra[i] - 'a']) printf("%c ", palavra[i] - 'a' + 'A');
             else {
                 escondidas++;
                 printf("_ ");
