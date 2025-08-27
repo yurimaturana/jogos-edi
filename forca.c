@@ -70,7 +70,7 @@ int main() {
             finalizado = 1;
         }
 
-        if (erros >= 6) {
+        if (erros >= 7) {
             printf("\033[0;31mVOCE PERDEU!\033[0;0m");
             finalizado = 1;
         }
