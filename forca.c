@@ -75,7 +75,7 @@ int main() {
             if (temp >= 'a' && temp <= 'z')
                 temp2 = temp;
             else if (temp >= 'A' && temp <= 'Z')
-                temp2 = temp - 'a' + 'A';
+                temp2 = temp - 'A' + 'a';
 
             if (letras[temp2 - 'a'] == 0) {
                 letras[temp2 - 'a'] = 1;
