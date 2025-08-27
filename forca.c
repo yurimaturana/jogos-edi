@@ -12,8 +12,15 @@ int main() {
     int tamanho = sizeof(palavra);
     int acertou = 0, erros = 0, escondidas = 0;
     int letras[26]={0};
-
+    
     int i, j;
+    
+    for (i = 0; i < tamanho && palavra[i]; i++) {
+        if (palavra[i] == '-' || (palavra[i] >= 'a' && palavra[i] <= 'z')) {}
+        else if (palavra[i] >= 'A' && palavra[i] <= 'Z') {
+            palavra[i] = palavra[i] - 'A' + 'a';
+        } else palavra[i] = ' ';
+    }
     
     while (!acertou) {
         system("clear");
@@ -49,7 +56,8 @@ int main() {
         // printf("ERROS: %d\n", erros);
 
         for (i = 0; i < tamanho && palavra[i]; i++) {
-            if (letras[palavra[i] - 'a']) printf("%c ", palavra[i] - 'a' + 'A');
+            if (palavra[i] == '-') printf("- ");
+            else if (letras[palavra[i] - 'a']) printf("%c ", palavra[i] - 'a' + 'A');
             else {
                 escondidas++;
                 printf("_ ");
@@ -83,6 +91,8 @@ int main() {
             }
         }
     }
+
+    printf("\n");
 
     return 0;
 }
