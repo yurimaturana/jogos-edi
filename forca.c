@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 int letrasChutadas[26]={0};
 
@@ -7,11 +9,46 @@ void lerLetra();
 void mostrarGrafico(int erros);
 
 int main() {
+    int mode;
+    printf("Insira o modo de jogo: (0 = inserir palavra; 1 = palavra aleatória) ");
+    scanf("%d", &mode);
+
     char palavra[101];
 
-    printf("Insira a palavra: ");
-    fgets(palavra, 101, stdin);
-    palavra[strlen(palavra) - 1] = '\0';
+    if (mode == 0) {
+        getchar();
+        printf("Insira a palavra: ");
+        fgets(palavra, 101, stdin);
+        palavra[strlen(palavra) - 1] = '\0';
+    } else if (mode == 1) {
+        srand(time(NULL));
+    
+        char* times[100] = {
+            "Flamengo", "Palmeiras", "Sao Paulo", "Corinthians", "Vasco",
+            "Gremio", "Internacional", "Cruzeiro", "Atletico Mineiro", "Botafogo",
+            "Fluminense", "Santos", "Bahia", "Fortaleza", "Ceara",
+            "Athletico Paranaense", "Goias", "Coritiba", "Avai", "Chapecoense",
+            "Bragantino", "Ponte Preta", "Guarani", "America Mineiro", "Nautico",
+            "Sport", "Criciuma", "Figueirense", "Vitoria", "ABC",
+            "CSA", "CRB", "Sampaio Correa", "Paysandu", "Remo",
+            "Operario", "Vila Nova", "Ituano", "Londrina", "Botafogo SP",
+            "Novorizontino", "Mirassol", "Juventude", "Cuiaba", "Joinville",
+            "Parana", "Portuguesa", "Ypiranga", "Ferroviaria", "Brasiliense",
+            "Ipatinga", "Volta Redonda", "Tombense", "Sao Caetano", "XV de Piracicaba",
+            "Treze", "Campinense", "Confiança", "Luverdense", "Boa Esporte",
+            "Barueri", "Resende", "Macae", "Madureira", "America RN",
+            "Anapolina", "Anapolis", "Rio Branco", "Noroeste", "Brusque",
+            "Caldense", "Democrata", "Uberlandia", "Aparecidense", "Altos",
+            "Floresta", "Manaus", "Ferroviario", "Altamira", "Central",
+            "Serra", "Icasa", "Caxias", "Pelotas", "Inter Limeira",
+            "Oeste", "Rio Claro", "Tupi", "Metropolitano", "Guaratingueta",
+            "Marilia", "Nacional AM", "Moto Club", "Fast Club", "Porto Velho",
+            "Penapolense", "Sao Jose", "Botafogo PB", "Horizonte", "Uniao Frederiquense"
+        };
+
+        int index = rand() % 100;
+        strcpy(palavra, times[index]);
+    }
 
     int tamanho = strlen(palavra);
     int finalizado = 0, erros = 0, faltamDescobrir = 0;
@@ -71,7 +108,7 @@ int main() {
         }
 
         if (erros >= 7) {
-            printf("\033[0;31mVOCE PERDEU!\033[0;0m");
+            printf("\033[0;31mVOCE PERDEU!\nA PALAVRA ERA: %s\033[0;0m", palavra);
             finalizado = 1;
         }
 
