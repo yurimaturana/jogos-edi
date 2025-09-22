@@ -160,7 +160,7 @@ int main() {
             }
         }
         
-        printf("\n");
+        printf("\n\n");
 
         if (faltamDescobrir == 0) {
             printf("\033[0;32mVOCE GANHOU!\033[0;0m");
@@ -199,5 +199,5 @@ void mostrarGrafico(int erros) {
     printf("\033[0;90m|\033[0;31m   %c\033[0;0m\n", erros > 0 ? 'o' : ' ');
     printf("\033[0;90m|\033[0;31m  %c%c%c\033[0;0m\n", erros > 2 ? '/' : ' ', erros > 1 ? '|' : ' ', erros > 3 ? '\\' : ' ');
     printf("\033[0;90m|\033[0;31m  %c %c\033[0;0m\n", erros > 4 ? '/' : ' ', erros > 5 ? '\\' : ' ');
-    printf("\033[0;90m|\033[0;0m\n");
+    printf("\033[0;90m|\033[0;0m      ");
 }
