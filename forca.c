@@ -10,7 +10,11 @@ void mostrarGrafico(int erros);
 
 int main() {
     int mode;
-    printf("Insira o modo de jogo: (0 = inserir palavra; 1 = palavra aleatória) ");
+    printf("0 = inserir palavra\n");
+    printf("1 = times de futebol\n");
+    printf("2 = cidades\n");
+    printf("3 = animais\n");
+    printf("Insira o modo de jogo: ");
     scanf("%d", &mode);
 
     char palavra[101];
@@ -48,6 +52,62 @@ int main() {
 
         int index = rand() % 100;
         strcpy(palavra, times[index]);
+    } else if (mode == 2) {
+        srand(time(NULL));
+    
+        char* capitais[100] = {
+            "Brasilia", "Buenos Aires", "Lima", "Bogota", "Caracas",
+            "Quito", "Santiago", "Montevideo", "La Paz", "Assuncao",
+            "Washington", "Ottawa", "Cidade do Mexico", "Havana", "Kingston",
+            "Paris", "Londres", "Berlim", "Roma", "Madrid",
+            "Lisboa", "Oslo", "Estocolmo", "Copenhague", "Helsinque",
+            "Dublin", "Viena", "Atenas", "Varsovia", "Praga",
+            "Bruxelas", "Amsterdam", "Luxemburgo", "Berna", "Budapeste",
+            "Moscou", "Pequim", "Toquio", "Seul", "Nova Delhi",
+            "Islamabade", "Banguecoque", "Hanoi", "Jacarta", "Manila",
+            "Colombo", "Cabul", "Teera", "Bagda", "Riad",
+            "Jerusalem", "Ancara", "Astana", "Doha", "Abu Dhabi",
+            "Kuala Lumpur", "Cingapura", "Ulan Bator", "Bishkek", "Dusambe",
+            "Nairobi", "Pretoria", "Luanda", "Maputo", "Harare",
+            "Addis Ababa", "Kampala", "Accra", "Dacar", "Tripoli",
+            "Argel", "Cartum", "Tunis", "Abuja", "Bamaco",
+            "Bissau", "Freetown", "Monrovia", "Rabat", "Conacri",
+            "Djibuti", "Reiquiavique", "Canberra", "Wellington", "Suva",
+            "Porto Moresby", "Apia", "Nukualofa", "Male", "Katmandu",
+            "Thimphu", "Muscate", "Sana", "Beirute", "Cidade do Vaticano",
+            "San Marino", "Andorra la Vella", "Podgorica", "Skopje", "Erevan"
+        };
+
+        int index = rand() % 100;
+        strcpy(palavra, capitais[index]);
+    } else if (mode == 3) {
+        srand(time(NULL));
+    
+        char* animais[100] = {
+            "Cachorro", "Gato", "Cavalo", "Vaca", "Porco",
+            "Galinha", "Pato", "Ovelha", "Cabra", "Coelho",
+            "Rato", "Leao", "Tigre", "Elefante", "Girafa",
+            "Zebra", "Macaco", "Urso", "Panda", "Canguru",
+            "Hipopotamo", "Rinoceronte", "Avestruz", "Foca", "Morsa",
+            "Tartaruga", "Jacare", "Crocodilo", "Cobra", "Lagarto",
+            "Iguana", "Arraia", "Tubarao", "Polvo", "Lula",
+            "Estrela do mar", "Coral", "Peixe", "Golfinho", "Baleia",
+            "Papagaio", "Periquito", "Canario", "Gaviao", "Aguia",
+            "Coruja", "Falcao", "Morcego", "Tamandua", "Bicho-preguica",
+            "Tatuzinho", "Capivara", "Anta", "Quati", "Lobo",
+            "Raposa", "Esquilo", "Ornitorrinco", "Lontra", "Doninha",
+            "Camelo", "Dromedario", "Cervo", "Rena", "Alce",
+            "Guaxinim", "Paca", "Cutia", "Onca", "Guepardo",
+            "Pantera", "Chita", "Hiena", "Urubu", "Condor",
+            "Arara", "Tucano", "Beija-flor", "Galo", "Codorna",
+            "Marreco", "Sapo", "Ra", "Perereca", "Salamandra",
+            "Gamba", "Carneiro", "Bicho-pau", "Louva-deus", "Formiga",
+            "Abelha", "Vespa", "Mosca", "Mosquito", "Barata",
+            "Escorpiao", "Aranha", "Caranguejo", "Lagosta", "Camarao"
+        };
+
+        int index = rand() % 100;
+        strcpy(palavra, animais[index]);
     }
 
     int tamanho = strlen(palavra);
