@@ -12,7 +12,7 @@ int main() {
     int mode;
     printf("0 = inserir palavra\n");
     printf("1 = times de futebol\n");
-    printf("2 = cidades\n");
+    printf("2 = capitais\n");
     printf("3 = animais\n");
     printf("Insira o modo de jogo: ");
     scanf("%d", &mode);
@@ -127,6 +127,9 @@ int main() {
     while (!finalizado) {
         printf("\033[2J\033[H");
 
+        if (mode == 1) printf("DICA: times de futebol\n");
+        if (mode == 2) printf("DICA: capitais\n");
+        if (mode == 3) printf("DICA: animais\n");
         printf("LETRAS: ");
         erros = 0;
         faltamDescobrir = 0;
@@ -147,7 +150,7 @@ int main() {
                 if (!encontrou) erros++;
             }
         }
-        printf("\n");
+        printf("\n\n");
 
         mostrarGrafico(erros);
         
